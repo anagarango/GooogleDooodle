@@ -20,6 +20,7 @@ export default function Search() {
     const [text, setText] = useState("")
     const [Doodles, setDoodles] = useState([])
     const [searchYear, setSearchYear] = useState(Number(r.query.year))
+    const [error, setError] = useState(false)
     
 
     const getGoogleSearch = async (info) => {
@@ -50,44 +51,63 @@ export default function Search() {
         }
     }
 
+
     const getMonth = (month) => {
         const date = new Date();
         date.setMonth(month - 1);
         return date.toLocaleString('en-US', {month: 'long'});
     }
 
+    
     const SearchYear = (e) => {
         if (e.key == "Enter"){
+            setError(false)
             setDoodles([])
             setLoading(true)
             setSelectedDoodle([])
             setDateEvents([])
             setText("")
+            console.log(searchYear)
         
-        
-        setTimeout(() => {
-            setLoading(false) 
-            setYear(searchYear)
-            setDoodles(Data)
-        }, 2000);
+            if(searchYear >= 1999 && searchYear <= 2023){
+                setTimeout(() => {
+                    setLoading(false) 
+                    setYear(searchYear)
+                    setDoodles(Data)
+                }, 2000);
+            } else {
+                setTimeout(()=>{
+                    setLoading(false) 
+                    setError(true)
+                }, 700)
+            }
+           
       }
     }
     
 
     useEffect(()=>{
+        setError(false)
         setDoodles([])
         setLoading(true)
         setSelectedDoodle([])
         setDateEvents([])
         setText("")
         
-        
-        setTimeout(() => {
-            setLoading(false) 
-            setYear(Number(r.query.year))
-            setSearchYear(Number(r.query.year))
-            setDoodles(Data)
-        }, 6000);
+        if(searchYear >= 1999 && searchYear <= 2023){
+            setTimeout(() => {
+                setLoading(false) 
+                setYear(Number(r.query.year))
+                setSearchYear(Number(r.query.year))
+                setDoodles(Data)
+            }, 6000);
+        } else {
+            setTimeout(()=>{
+                setLoading(false) 
+                setError(true)
+            }, 700)
+            
+        }
     },[])
 
     return(
@@ -101,9 +121,10 @@ export default function Search() {
         <div className="flex flex-col justify-center items-center h-screen max-h-screen">
             <div className="flex fixed top-0 p-4 w-full justify-center items-center bg-white shadow-[0px_1px_5px_0px_rgba(85,85,85,0.4)]">
                 <Image src="/google.svg" width={100} height={100} onClick={()=>r.replace("/")} className="cursor-pointer"></Image>
-                <input placeholder="1999 - 2022" type="number" value={searchYear} onChange={(e)=>{setSearchYear(e.target.value)}} onKeyDown={SearchYear} className='flex rounded-3xl w-7/12 border-solid border border-gray-300 px-3 py-2 ml-5 items-center hover:shadow-[0px_1px_5px_0px_rgba(85,85,85,0.4)] focus-within:shadow-[0px_1px_5px_0px_rgba(85,85,85,0.4)]' pattern="[0-9]" maxLength={4} minLength={4} min="1999" max="2022"></input>
+                <input placeholder="1999 - 2023" type="number" value={searchYear} onChange={(e)=>{setSearchYear(e.target.value)}} onKeyDown={SearchYear} className='flex rounded-3xl w-7/12 border-solid border border-gray-300 px-3 py-2 ml-5 items-center hover:shadow-[0px_1px_5px_0px_rgba(85,85,85,0.4)] focus-within:shadow-[0px_1px_5px_0px_rgba(85,85,85,0.4)]' pattern="[0-9]" maxLength={4} minLength={4} min="1999" max="2022"></input>
             </div>
             {loading && <Lottie className="flex absolute" style={{height:150, width:150}} animationData={LoadingAnimation} loop={true}/>}
+            {error && <h1 className="flex absolute">Input needs to be a number between 1999 - 2023</h1>}
             <div className="flex w-screen h-full max-w-[1100px] justify-start items-start overflow-hidden mt-20">
                 <div className={selectedDoodle.length == 0 ? "flex flex-row w-12/12 max-h-full overflow-scroll flex-wrap justify-center items-start" : "flex flex-col w-4/12 h-full max-h-full overflow-scroll items-center"}>
                     {Doodles.map((o,i)=>(
@@ -118,7 +139,7 @@ export default function Search() {
                         </>
                     ))}
                 </div>
-                <div className={selectedDoodle.length == 0 ? "flex flex-col h-full justify-start w-0/12 overflow-scroll pt-20" : "flex flex-col h-full max-h-full justify-start w-8/12 overflow-scroll border-solid border-l-2 pl-12 pr-5 mt-5 pb-14"}>
+                <div className={selectedDoodle.length == 0 ? "flex flex-col h-full justify-start w-0/12 overflow-scroll pt-20" : "flex flex-col h-full max-h-full justify-start w-8/12 overflow-scroll border-solid border-l-2 pl-8 pr-5 mt-5 pb-14"}>
                     {selectedDoodle.map((o,i) => (
                         <div key={i} className="flex flex-col items-center mb-10">
                             <h1 className="font-semibold text-4xl pt-5">{o.title}</h1>

@@ -52,4 +52,11 @@ footer p, header p{
   #google{
     width: 250px;
   }
+  #footerP{
+    flex-direction: column;
+  }
+
+  footer p{
+    padding:0.2em 0.5em
+  }
 }
