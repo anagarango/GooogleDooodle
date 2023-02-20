@@ -25,9 +25,11 @@ test.describe('iPad Air Testing', () => {
         await page.goto(urlHome)
 
         const inputTag = page.locator('input');
-        await expect(inputTag).toHaveValue("1999")
+        await expect(inputTag).toHaveValue("")
     })
 })
+
+
 
 test.describe('iPhone XR Testing', () => {
     test.use({viewport: { width: 414, height: 896 }});
@@ -51,6 +53,8 @@ test.describe('iPhone XR Testing', () => {
         expect(await image.getAttribute('src')).toContain('/google.svg');
     })
 })
+
+
 
 test.describe('Desktop Testing', () => {
     test.use({viewport: { width: 1280, height: 800 }});

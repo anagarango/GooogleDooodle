@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 
 export default function Home() {
-  const [year, setYear] = useState(1999)
+  const [year, setYear] = useState()
   const r = useRouter()
 
   const SearchYear = (e) => {
@@ -37,7 +37,7 @@ export default function Home() {
         <Image id='google' alt='google-logo' className='max-w-full' src="/google.svg" styles={{width:"350px", height:"250px"}} width={350} height={250}></Image>
         <div className='flex rounded-3xl w-[40rem] max-w-full border-solid border border-gray-300 pl-2 py-2 items-center mt-12 mb-2 hover:shadow-[0px_1px_5px_0px_rgba(85,85,85,0.4)] focus-within:shadow-[0px_1px_5px_0px_rgba(85,85,85,0.4)]'>
           <Image src="/search.png" className='w-4 h-4 ml-2 mr-4' width={10} height={10}></Image>
-          <input type="number" value={year} onChange={(e)=>{setYear(e.target.value)}} onKeyDown={SearchYear} className='w-11/12' pattern="[0-9]" maxLength={4} minLength={4} min="1999" max="2022"></input>
+          <input placeholder="1999 - 2023" type="number" value={year} onChange={(e)=>{setYear(e.target.value)}} onKeyDown={SearchYear} className='w-11/12' pattern="[0-9]" maxLength={4} minLength={4} min="1999" max="2022"></input>
         </div>
         <p className='mb-12 text-gray-400'>*Insert a number between 1999 - 2023 to search Google Doodles that existed in that year</p>
         <div>
@@ -48,12 +48,12 @@ export default function Home() {
       <footer className='fixed bottom-0 w-full bg-gray-100'>
         <p className='p-4'>Canada</p>
         <div className='flex w-[40rem] w-full border-solid border border-gray-300 p-4 items-center justify-between'>
-          <div className='flex'>
+          <div id="footerP" className='flex'>
             <p>Advertising</p>
             <p>Business</p>
             <p>How Search Works</p>
           </div>
-          <div className='flex'>
+          <div id="footerP" className='flex'>
             <p>Privacy</p>
             <p>Terms</p>
             <p>Settings</p>
