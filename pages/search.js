@@ -7,6 +7,9 @@ import Data from '@/data/google'
 import Image from 'next/image'
 import styles from '@/styles/Home.module.css'
 import axios from "axios";
+import Card from "@/components/card";
+import SelectedCard from "@/components/selectedCard";
+import DateEvents from "@/components/dateEvents";
 
 export default function Search() {
     const r = useRouter()
@@ -58,7 +61,7 @@ export default function Search() {
         return date.toLocaleString('en-US', {month: 'long'});
     }
 
-    
+
     const SearchYear = (e) => {
         if (e.key == "Enter"){
             setError(false)
@@ -130,10 +133,7 @@ export default function Search() {
                     {Doodles.map((o,i)=>(
                         <>
                         {Number(year) === Number(o.year) ? 
-                            <div className={styles.card} key={i} id={i} onClick={()=>{getGoogleSearch(o)}}>
-                                <Image alt={o.title} src={`https:${o.url}`} width={250} height={100} styles={{width:"250px", height:"100px"}}/>
-                                <p className="pt-4">{o.title}</p>
-                            </div> 
+                            <Card className={styles.card} key={i} id={i} onClick={()=>{getGoogleSearch(o)}} alt={o.title} src={o.url} text={o.title}></Card> 
                             : <></>
                         }
                         </>
@@ -141,25 +141,14 @@ export default function Search() {
                 </div>
                 <div className={selectedDoodle.length == 0 ? "flex flex-col h-full justify-start w-0/12 overflow-scroll pt-20" : "flex flex-col h-full max-h-full justify-start w-8/12 overflow-scroll border-solid border-l-2 pl-8 pr-5 mt-5 pb-14"}>
                     {selectedDoodle.map((o,i) => (
-                        <div key={i} className="flex flex-col items-center mb-10">
-                            <h1 className="font-semibold text-4xl pt-5">{o.title}</h1>
-                            <div className="text-gray-500 font-medium pt-4 pb-7">
-                                <span>{getMonth(o.month)} </span>
-                                <span>{o.day}, </span>
-                                <span>{o.year}</span>
-                            </div>
-                            <Image  alt={o.title} src={`https:${o.url}`} width={380} height={100} />
-                        </div>
+                        <SelectedCard key={i} title={o.title}  alt={o.title} src={o.url} month={getMonth(o.month)} day={o.day} year={o.year}></SelectedCard>
                     ))}
                     
                     <h1 className="text-gray-500 text-lg mb-5"><i>{text}</i></h1>
 
                     {dateEvents && dateEvents.map((o, index)=>{
                         return (
-                            <div key={index} className="mb-3">
-                                <b>{o.year}</b> - 
-                                {o.description}
-                            </div>
+                            <DateEvents key={index} year={o.year} description={o.description}></DateEvents>
                         )
                     })}
                 </div>  
