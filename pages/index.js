@@ -46,8 +46,8 @@ export default function Home() {
         </div>
       </main>
       <footer className='fixed bottom-0 w-full bg-gray-100'>
-        <p className='p-4'>Canada</p>
-        <div className='flex w-[40rem] w-full border-solid border border-gray-300 p-4 items-center justify-between'>
+        <p className='px-3 py-1'>Canada</p>
+        <div className='flex w-[40rem] w-full border-solid border border-gray-300 p-3 items-center justify-between'>
           <div id="footerP" className='flex'>
             <p>Advertising</p>
             <p>Business</p>
