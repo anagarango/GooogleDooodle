@@ -33,7 +33,7 @@ export default function Home() {
         <p>About</p>
         <p>Store</p>
       </header>
-      <main className={styles.main} style={{marginTop:"-70px"}}>
+      <main className={styles.main} style={{marginTop:"50px"}}>
         <Image id='google' alt='google-logo' className='max-w-full' src="/google.svg" styles={{width:"350px", height:"250px"}} width={350} height={250}></Image>
         <div className='flex rounded-3xl w-[40rem] max-w-full border-solid border border-gray-300 pl-2 py-2 items-center mt-12 mb-2 hover:shadow-[0px_1px_5px_0px_rgba(85,85,85,0.4)] focus-within:shadow-[0px_1px_5px_0px_rgba(85,85,85,0.4)]'>
           <Image src="/search.png" className='w-4 h-4 ml-2 mr-4' width={10} height={10}></Image>
