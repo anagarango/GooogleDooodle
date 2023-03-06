@@ -128,7 +128,7 @@ export default function Search() {
             </div> */}
             {loading && <Lottie className="flex absolute" style={{height:150, width:150}} animationData={LoadingAnimation} loop={true}/>}
             {error && <h1 className="flex absolute">Input needs to be a number between 1999 - 2023</h1>}
-            <div className="flex w-screen h-full max-w-[1100px] justify-start items-start overflow-hidden">
+            {/* <div className="flex w-screen h-full max-w-[1100px] justify-start items-start overflow-hidden"> */}
                 {/* <div className={selectedDoodle.length == 0 ? "flex flex-row w-12/12 max-h-full overflow-scroll flex-wrap justify-center items-start" : "flex flex-col w-4/12 max-h-full overflow-scroll items-center"}>
                     {Doodles.map((o,i)=>(
                         <>
@@ -152,7 +152,7 @@ export default function Search() {
                         )
                     })}
                 </div>   */}
-            </div>
+            {/* </div> */}
         </div>
      </>
     )
