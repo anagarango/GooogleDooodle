@@ -121,7 +121,7 @@ export default function Search() {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/google.svg" />
         </Head>
-        <div className="flex flex-col justify-center items-center overflow-hidden">
+        <div className="flex flex-col justify-center items-center h-screen overflow-hidden">
             {/* <div className="flex fixed top-0 p-4 w-full justify-center items-center bg-white shadow-[0px_1px_5px_0px_rgba(85,85,85,0.4)]">
                 <Image src="/google.svg" width={100} height={100} onClick={()=>r.replace("/")} className="cursor-pointer"></Image>
                 <input placeholder="1999 - 2023" type="number" value={searchYear} onChange={(e)=>{setSearchYear(e.target.value)}} onKeyDown={SearchYear} className='flex rounded-3xl w-7/12 border-solid border border-gray-300 px-3 py-2 ml-5 items-center hover:shadow-[0px_1px_5px_0px_rgba(85,85,85,0.4)] focus-within:shadow-[0px_1px_5px_0px_rgba(85,85,85,0.4)]' pattern="[0-9]" maxLength={4} minLength={4} min="1999" max="2022"></input>
