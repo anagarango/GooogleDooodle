@@ -20,7 +20,7 @@ export default function SelectedCard({
                     <span>{day}, </span>
                     <span>{year}</span>
                 </div>
-                <Image  alt={alt} src={`https:${src}`} width={380} height={100} />
+                <Image unoptimized alt={alt} src={`https:${src}`} width={380} height={100} />
             </div>
         </>
     )

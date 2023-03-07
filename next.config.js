@@ -2,6 +2,12 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["www.google.com"]
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.google.com',
+      },
+    ],
   }
 }
